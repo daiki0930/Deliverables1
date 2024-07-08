@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import '../api/auth/firebaseConfig';
 import styles from '../../styles/Login.module.css';
+import { toast } from 'react-toastify';
 // import { useShowToast } from '@/hooks/useShowToast';
 
 const SignInForm = () => {
@@ -15,8 +15,6 @@ const SignInForm = () => {
     // const showToast = useShowToast();
 
     
-
-
     // authはfirebaseAuthenticationサービスのインスタンス
     const handleRegister = async (e) => {
         console.log('----1----')
@@ -25,6 +23,7 @@ const SignInForm = () => {
         try {
             console.log('----3----')
             const registerUser = await createUserWithEmailAndPassword(auth, email, password);
+            toast.success('ユーザー登録完了!');
             console.log('----4---', registerUser.user)
             setUser(registerUser);
             console.log('----5---', registerUser.user)

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import styles from '../../styles/Login.module.css';
+// import { toast } from 'react-toastify';
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');
@@ -12,22 +13,22 @@ const LoginForm = () => {
     const auth = getAuth();
 
     const handleLogin = async (e) => {
-        event.preventDefault();
+        e.preventDefault();
         try {
             const loginUser = await signInWithEmailAndPassword(auth, email, password);
-            setUser(loginUser)
-            router.push('/Photos/MyPage')
+            setUser(loginUser);
+            router.push('/Photos/MyPage');
         } catch (error) {
             setError(error);
         }
-    }
+    };
 
     return (
         <div className={styles.container}>
             <div className={styles.card}>
-                <h2>ログイン</h2>
-                <form onSubmit={handleLogin}>
-                    <div>
+            <h2>ログイン</h2>
+                <div>
+                    <form onSubmit={handleLogin}>
                         <input
                         type="email"
                         placeholder="メールアドレス"
@@ -44,16 +45,14 @@ const LoginForm = () => {
                         required
                         className={styles.input}
                         />
-                    </div>
-                    <div>
                         <button
                         type="submit"
                         className={styles.button2}
                         >
-                            Login
+                            ログイン
                         </button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     );
