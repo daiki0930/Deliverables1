@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import '../api/auth/firebaseConfig';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import styles from '../../styles/Login.module.css';
-// import { toast } from 'react-toastify';
+import { useShowToast } from '../../../hooks/useShowToast';
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');
@@ -11,15 +12,25 @@ const LoginForm = () => {
     const [error, setError] = useState('');
     const router = useRouter();
     const auth = getAuth();
+    const showToast = useShowToast()
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
             const loginUser = await signInWithEmailAndPassword(auth, email, password);
+            showToast({
+                status: 'success',
+                title: 'ログインに成功しました。'
+            })
             setUser(loginUser);
-            router.push('/Photos/MyPage');
+            router.push('/Photos/FirebaseSignIn');
         } catch (error) {
             setError(error);
+            showToast({
+                status: 'error',
+                title: 'ログインに失敗しました。',
+                description: '入力されたユーザー情報が正しくありません。'
+            })
         }
     };
 
