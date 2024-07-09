@@ -6,17 +6,26 @@ export const useShowToast = () => {
     const options = {
         type: status,
         position: 'top-center',
-        description: description,
-        autoClose: 1500,
+        autoClose: 2000,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
     };
 
-    toast(title || 'Notification', options);
-    if (description) {
-        toast.info(description);
-      }
+    // テンプレリテラル、メッセージ改行、
+    const message = `${title || 'Notification'}${description || ''}`;
+    toast(message, options);
+    // toast(title || 'Notification', options);
+    // if (description) {
+    //     toast(description, {
+    //     type: 'info',
+    //     position: 'top-center',
+    //     autoClose: 2000,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     });
+    //   }
     };
   
     return showToast;
