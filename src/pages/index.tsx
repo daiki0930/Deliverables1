@@ -6,8 +6,8 @@ const Index = () => {
     const router = useRouter();
 
     return (
-        <div className={ styles.background}>
-          <div style={{ position: 'absolute', top: 20, width: '100%', textAlign: 'center'}}>
+        <div className={ styles.background_login }>
+          <div style={{ background: 'white', position: 'absolute', top: 20, width: '100%', textAlign: 'center'}}>
             <p style={{ fontSize: '40px', fontWeight: 'bold', color: 'red'}}
             >ポートフォリオサイトです。
             </p>

@@ -12,20 +12,21 @@ export const useShowToast = () => {
         draggable: true,
     };
 
-    // テンプレリテラル、メッセージ改行、
-    const message = `${title || 'Notification'}${description || ''}`;
-    toast(message, options);
-    // toast(title || 'Notification', options);
-    // if (description) {
-    //     toast(description, {
-    //     type: 'info',
-    //     position: 'top-center',
-    //     autoClose: 2000,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     });
-    //   }
+    // テンプレリテラル、メッセージ改行、||は論理演算子、どちらかあれば真を返す
+    // titleがあればそのまま表示、descriptionがあればそのまま表示
+    // const message = `${title || 'Notification'}\n${description || ''}`;
+    // toast(message, options);
+    toast(title || 'Notification', options);
+    if (description) {
+        toast(description, {
+        type: 'info',
+        position: 'top-center',
+        autoClose: 2000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        });
+      }
     };
   
     return showToast;

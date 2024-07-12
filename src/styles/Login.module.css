@@ -1,4 +1,4 @@
-.background {
+.background_login {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,4 +69,24 @@
 
 .button2:active {
     background-color: #ba832b; /* クリック時の色 */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.background_home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom,  #f5ba61, #eecfb6)
 }

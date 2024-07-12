@@ -23,7 +23,7 @@ const LoginForm = () => {
                 title: 'ログインに成功しました。'
             })
             setUser(loginUser);
-            router.push('/Photos/FirebaseSignIn');
+            router.push('/Photos/MyPage/');
         } catch (error) {
             setError(error);
             showToast({
