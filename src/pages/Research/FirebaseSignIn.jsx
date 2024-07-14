@@ -25,7 +25,7 @@ const SignInForm = () => {
                 status: 'success',
                 title: 'ユーザー登録が完了しました。',
             });
-            router.push('/Photos/FirebaseLogin');
+            router.push('/Research/FirebaseLogin');
         } catch (error) {
             setError(error);
             showToast({
@@ -57,7 +57,7 @@ const SignInForm = () => {
                     />
                     <button 
                     type="submit" 
-                    className={styles.button2}
+                    className={styles.button_LogSign}
                     >
                         新規登録
                     </button>
@@ -67,5 +67,23 @@ const SignInForm = () => {
         </div>
     );
 };
+
+// export async function getServerSideProps(context) {
+//     const auth = getAuth();
+//     const user = auth.currentUser;
+
+//     if (!user) {
+//         return {
+//             redirect: {
+//                 destination: '/Research',
+//                 permanent: false
+//             },
+//         };
+//     }
+
+//     return {
+//         props: { user },
+//     };
+// }
 
 export default SignInForm;

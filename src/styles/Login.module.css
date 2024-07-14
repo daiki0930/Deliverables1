@@ -51,7 +51,7 @@
     border-bottom: 2px solid teal;
 }
 
-.button2 {
+.button_LogSign {
     background-color: teal;
     color: white;
     width: 50%;
@@ -63,23 +63,31 @@
     transition: background-color 0s;
 }
 
-.button2:hover {
+.button_LogSign:hover {
     background-color: #b31d40; /* ホバー時の色 */
 }
 
-.button2:active {
+.button_LogSign:active {
     background-color: #ba832b; /* クリック時の色 */
 }
 
+.button_LogOut {
+    background-color: #f4f0b4;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 7px;
+}
 
+.button_LogOut:hover {
+    background-color: #ea9917; /* クリック時の色 */
+}
 
-
-
-
-
-
-
-
+.button_LogOut:active {
+    background-color: #d2385c;
+}
 
 
 

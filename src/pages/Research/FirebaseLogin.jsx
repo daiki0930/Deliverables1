@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+
 import '../api/auth/firebaseConfig';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+
 import styles from '../../styles/Login.module.css';
 import { useShowToast } from '../../../hooks/useShowToast';
 
@@ -23,7 +25,7 @@ const LoginForm = () => {
                 title: 'ログインに成功しました。'
             })
             setUser(loginUser);
-            router.push('/Photos/MyPage/');
+            router.push('/Research/MyPage/');
         } catch (error) {
             setError(error);
             showToast({
@@ -58,7 +60,7 @@ const LoginForm = () => {
                         />
                         <button
                         type="submit"
-                        className={styles.button2}
+                        className={styles.button_LogSign}
                         >
                             ログイン
                         </button>
@@ -68,5 +70,23 @@ const LoginForm = () => {
         </div>
     );
 };
+
+// export async function getServerSideProps(context) {
+//     const auth = getAuth();
+//     const user = auth.currentUser;
+
+//     if (!user) {
+//         return {
+//             redirect: {
+//                 destination: '/pages',
+//                 permanent: false
+//             },
+//         };
+//     }
+
+//     return {
+//         props: { user },
+//     };
+// }
 
 export default LoginForm;

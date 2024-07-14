@@ -16,6 +16,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/Photos/FirebaseSignIn.jsx", "src/pages/Photos/MyPage/index.jsx", "hooks/useShowToast.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/Research/FirebaseSignIn.jsx", "src/pages/Research/MyPage/index.jsx", "hooks/useShowToast.js"],
   "exclude": ["node_modules"]
 }

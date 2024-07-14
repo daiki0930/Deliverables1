@@ -17,11 +17,11 @@ const Index = () => {
           </div>
             <div>
                 <button className={ styles.button1 }
-                onClick={() => router.push('/Photos/FirebaseSignIn')}
+                onClick={() => router.push('/Research/FirebaseSignIn')}
                 >新規登録の方はこちら
                 </button>
                 <button className={ styles.button1 }
-                onClick={() => router.push('/Photos/FirebaseLogin')}
+                onClick={() => router.push('/Research/FirebaseLogin')}
                 >ログインの方はこちら
                 </button>
             </div>
