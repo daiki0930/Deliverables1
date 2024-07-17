@@ -7,6 +7,8 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import styles from '../../styles/Login.module.css';
 import { useShowToast } from '../../../hooks/useShowToast';
 
+import { setCookie } from 'nookies';
+
 const LoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -15,19 +17,30 @@ const LoginForm = () => {
     const router = useRouter();
     const auth = getAuth();
     const showToast = useShowToast()
+    const oneHourInSeconds = 3600;
+
+    // console.log('----ログイン0------',document.cookie)
 
     const handleLogin = async (e) => {
+        console.log('----ログイン0------', )
         e.preventDefault();
         try {
             const loginUser = await signInWithEmailAndPassword(auth, email, password);
+            setUser(loginUser.user);
+            console.log('----ログイン1-------')
+            const token = await loginUser.user.getIdToken();
+            console.log('----ログイン1.5-------', token)
+            console.log('----ログイン2-------',)
+            setCookie(null, 'token', token, { maxAge: oneHourInSeconds, path: '/Research/MyPage'});
+
             showToast({
                 status: 'success',
                 title: 'ログインに成功しました。'
             })
-            setUser(loginUser);
             router.push('/Research/MyPage/');
         } catch (error) {
             setError(error);
+            setUser(null);
             showToast({
                 status: 'error',
                 title: 'ログインに失敗しました。',

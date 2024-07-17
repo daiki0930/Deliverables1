@@ -6,7 +6,9 @@ import '../../api/auth/firebaseConfig';
 import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth';
 
 import styles from '../../../styles/Login.module.css';
-import Description from '../../../components/description'
+import Description from '../../../components/description';
+import { destroyCookie, setCookie } from 'nookies';
+import { parseCookies } from 'nookies';
 
 const Home = () => {
     const [user, setUser] = useState(null);
@@ -16,17 +18,22 @@ const Home = () => {
 
     useEffect(() => {
         const Logout = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser);
+            if (currentUser) {
+                setUser(currentUser);
+            } else {
+                setUser(null);
+            }
         });
         return () => Logout();
-    }, []);
+    }, [auth]);
 
     const handleLogout = async() => {
-        console.log('---ログアウト1-----')
         try {
-            console.log('---ログアウト2-----')
+            console.log('----どこでトークン削除が行われるか----',document.cookie)
             await signOut(auth);
-            console.log('---ログアウト3-----')
+            console.log('----ログアウト0----',auth)
+            destroyCookie(null, 'token', { path: '/Research/MyPage'});
+            console.log('----トークン削除されてるはず----',document.cookie)
             setUser(null);
             showToast({
                 status: 'success',
@@ -58,20 +65,19 @@ const Home = () => {
 };
 
 // export async function getServerSideProps(context) {
-//     const auth = getAuth();
-//     const user = auth.currentUser;
+//     const cookies = parseCookies(context);
 
-//     if (!user) {
+//     if (!cookies.token) {
 //         return {
 //             redirect: {
-//                 destination: '/Research/MyPage',
+//                 destination: '/Research/FirebaseLogin',
 //                 permanent: false
 //             },
 //         };
 //     }
 
 //     return {
-//         props: { user },
+//         props: {},
 //     };
 // }
 
