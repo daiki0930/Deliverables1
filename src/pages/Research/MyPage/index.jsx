@@ -9,6 +9,7 @@ import styles from '../../../styles/Login.module.css';
 import Description from '../../../components/description';
 import { destroyCookie, setCookie } from 'nookies';
 import { parseCookies } from 'nookies';
+import { auth } from '../../../../helper/firebase/firebaseAdmin';
 
 const Home = () => {
     const [user, setUser] = useState(null);
@@ -46,7 +47,6 @@ const Home = () => {
                 title: 'ログアウトに失敗しました。',
             })
         }
-
     }
     return (
         <div className={ styles.background_home }>
@@ -64,31 +64,34 @@ const Home = () => {
     );
 };
 
-// export async function getServerSideProps(context) {
-//     const cookies = parseCookies(context);
+export async function getServerSideProps(context) {
+    const cookies = parseCookies(context);
+    const token = cookies.token || '';
 
-//     if (!cookies.token) {
-//         return {
-//             redirect: {
-//                 destination: '/Research/FirebaseLogin',
-//                 permanent: false
-//             },
-//         };
-//     }
+    if (!token) {
+        return {
+            redirect: {
+                destination: '/Research/FirebaseLogin',
+                permanent: false
+            },
+        };
+    }
 
-//     return {
-//         props: {},
-//     };
-// }
-
-// const Dashboard = ({ user }) => {
-//     return (
-//       <div>
-//         <h1>Dashboard</h1>
-//         <p>Welcome, {user.email}</p>
-//       </div>
-//     );
-//   };
-// export default Dashboard;
+    try {
+        const decodedToken = await admin.auth().verifyIdToken(token);
+        const user = admin.auth().getUser(decodedToken.uid);
+        return {
+            props: { initialUser: user },
+          };
+    } catch (error) {
+          destroyCookie(context, 'token', { path: '/Research/MyPage' });
+          return {
+            redirect: {
+              destination: '/Research/FirebaseLogin',
+              permanent: false,
+            },
+        };
+    }
+}
 
 export default Home;
