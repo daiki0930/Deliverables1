@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import '../api/auth/firebaseConfig';
+import '../api/firebase/firebaseConfig';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import styles from '../../styles/Login.module.css';
 import { useShowToast } from '../../../hooks/useShowToast';

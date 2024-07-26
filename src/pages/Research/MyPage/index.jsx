@@ -2,14 +2,41 @@ import { useState, useEffect } from 'react';
 import { useShowToast } from '../../../../hooks/useShowToast';
 import { useRouter } from 'next/router';
 
-import '../../api/auth/firebaseConfig';
+import '../../api/firebase/firebaseConfig';
 import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth';
 
 import styles from '../../../styles/Login.module.css';
 import Description from '../../../components/description';
 import { destroyCookie, setCookie } from 'nookies';
 import { parseCookies } from 'nookies';
-import { auth } from '../../../../helper/firebase/firebaseAdmin';
+import { auth } from '../../api/firebase/firebaseAdmin';
+
+export async function getServerSideProps(context) {
+    const cookies = parseCookies(context);
+
+    if (!cookies.session) {
+        return {
+            redirect: {
+                destination: '/Research/FirebaseLogin',
+                permanent: false
+            },
+        };
+    }
+
+    try {
+        const decodedToken = await admin.auth().verifySessionCookie(cookies.session, true);
+        return {
+            props: { user: decodedToken },
+          };
+    } catch (error) {
+          return {
+            redirect: {
+              destination: '/Research/FirebaseLogin',
+              permanent: false,
+            },
+        };
+    }
+}
 
 const Home = () => {
     const [user, setUser] = useState(null);
@@ -64,34 +91,31 @@ const Home = () => {
     );
 };
 
-export async function getServerSideProps(context) {
-    const cookies = parseCookies(context);
-    const token = cookies.token || '';
+// export async function getServerSideProps(context) {
+//     const cookies = parseCookies(context);
 
-    if (!token) {
-        return {
-            redirect: {
-                destination: '/Research/FirebaseLogin',
-                permanent: false
-            },
-        };
-    }
+//     if (!cookies.session) {
+//         return {
+//             redirect: {
+//                 destination: '/Research/FirebaseLogin',
+//                 permanent: false
+//             },
+//         };
+//     }
 
-    try {
-        const decodedToken = await admin.auth().verifyIdToken(token);
-        const user = admin.auth().getUser(decodedToken.uid);
-        return {
-            props: { initialUser: user },
-          };
-    } catch (error) {
-          destroyCookie(context, 'token', { path: '/Research/MyPage' });
-          return {
-            redirect: {
-              destination: '/Research/FirebaseLogin',
-              permanent: false,
-            },
-        };
-    }
-}
+//     try {
+//         const decodedToken = await admin.auth().verifySessionCookie(cookies.session, true);
+//         return {
+//             props: { user: decodedToken },
+//           };
+//     } catch (error) {
+//           return {
+//             redirect: {
+//               destination: '/Research/FirebaseLogin',
+//               permanent: false,
+//             },
+//         };
+//     }
+// }
 
 export default Home;

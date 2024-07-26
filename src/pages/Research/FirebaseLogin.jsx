@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-import '../api/auth/firebaseConfig';
+import '../api/firebase/firebaseConfig';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 import styles from '../../styles/Login.module.css';
@@ -29,9 +29,16 @@ const LoginForm = () => {
             setUser(loginUser.user);
             console.log('----ログイン1-------')
             const token = await loginUser.user.getIdToken();
-            console.log('----ログイン1.5-------', token)
-            console.log('----ログイン2-------',)
-            setCookie(null, 'token', token, { maxAge: oneHourInSeconds, path: '/Research/MyPage'});
+            const csrfToken = 'dummy_csrf_Token';
+            await fetch('api/auth/sessionLogin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ token, csrfToken })
+            });
+            await auth.signOut();
+            // setCookie(null, 'token', token, { maxAge: oneHourInSeconds, path: '/Research/MyPage'});
 
             showToast({
                 status: 'success',
