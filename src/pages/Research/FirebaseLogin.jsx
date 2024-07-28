@@ -22,22 +22,26 @@ const LoginForm = () => {
     // console.log('----ログイン0------',document.cookie)
 
     const handleLogin = async (e) => {
-        console.log('----ログイン0------', )
+        console.log('----ログイン0------')
         e.preventDefault();
         try {
             const loginUser = await signInWithEmailAndPassword(auth, email, password);
+            console.log('----ログイン1-------', loginUser)
             setUser(loginUser.user);
-            console.log('----ログイン1-------')
+            console.log('----ログイン1-------', loginUser.user)
             const token = await loginUser.user.getIdToken();
-            const csrfToken = 'dummy_csrf_Token';
-            await fetch('api/auth/sessionLogin', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ token, csrfToken })
-            });
-            await auth.signOut();
+            console.log('----ログイン2-------', token)
+            // IDトークンはゲットできてる
+
+
+            // await fetch('api/auth/sessionLogin', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify({ token })
+            // });
+            // await auth.signOut();
             // setCookie(null, 'token', token, { maxAge: oneHourInSeconds, path: '/Research/MyPage'});
 
             showToast({
@@ -90,23 +94,5 @@ const LoginForm = () => {
         </div>
     );
 };
-
-// export async function getServerSideProps(context) {
-//     const auth = getAuth();
-//     const user = auth.currentUser;
-
-//     if (!user) {
-//         return {
-//             redirect: {
-//                 destination: '/pages',
-//                 permanent: false
-//             },
-//         };
-//     }
-
-//     return {
-//         props: { user },
-//     };
-// }
 
 export default LoginForm;

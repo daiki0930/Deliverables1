@@ -1,11 +1,11 @@
-import admin from 'firebase-admin';
-import serviceAccount from './serviceAccount.json';
+// import admin from 'firebase-admin';
+// import serviceAccount from './serviceAccount.json';
 
 
-if (!admin.apps.length) {
-    admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount),
-    });
-}
+// if (!admin.apps.length) {
+//     admin.initializeApp({
+//         credential: admin.credential.cert(serviceAccount),
+//     });
+// }
 
-export const auth = admin.auth()
+// export const auth = admin.auth()

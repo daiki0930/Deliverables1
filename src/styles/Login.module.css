@@ -95,6 +95,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 2000px;
     background: linear-gradient(to bottom,  #f5ba61, #eecfb6)
 }
