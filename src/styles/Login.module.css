@@ -96,5 +96,17 @@
     justify-content: center;
     align-items: center;
     height: 2000px;
+    flex-Direction: 'column'; 
     background: linear-gradient(to bottom,  #f5ba61, #eecfb6)
+    /* background: linear-gradient(to bottom,  #f3960b, #ffffff) */
+}
+
+.question_input {
+    width: 700px;
+    padding: 9px;
+    margin-top: 5px;
+    margin-bottom: 40px;
+    border-top: 2px solid #f56f27;
+    border-bottom: 2px solid #f56f27;
+    outline: none;
 }
