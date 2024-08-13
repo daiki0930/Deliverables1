@@ -37,4 +37,4 @@ next-env.d.ts
 
 # env
 # supersecretkeythatnoonecanguess12345
-.env.local
+.env
