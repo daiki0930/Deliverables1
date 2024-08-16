@@ -101,11 +101,47 @@
     /* background: linear-gradient(to bottom,  #f3960b, #ffffff) */
 }
 
-.question_input {
-    width: 700px;
+
+
+
+
+
+.question_input1 {
+    width: 270px;
     padding: 9px;
     margin-top: 5px;
-    margin-bottom: 40px;
+    margin-bottom: 80px;
+    font-Size: 25px;
+    border-top: 2px solid #f56f27;
+    border-bottom: 2px solid #f56f27;
+    outline: none;
+}
+
+.question_input2 {
+    width: 870px;
+    padding: 9px;
+    margin-top: 5px;
+    margin-bottom: 80px;
+    border-top: 2px solid #f56f27;
+    border-bottom: 2px solid #f56f27;
+    outline: none;
+}
+
+.question_input3 {
+    width: 360px;
+    padding: 9px;
+    margin-top: 5px;
+    margin-bottom: 80px;
+    border-top: 2px solid #f56f27;
+    border-bottom: 2px solid #f56f27;
+    outline: none;
+}
+
+.question_input4 {
+    width: 810px;
+    padding: 9px;
+    margin-top: 5px;
+    margin-bottom: 80px;
     border-top: 2px solid #f56f27;
     border-bottom: 2px solid #f56f27;
     outline: none;

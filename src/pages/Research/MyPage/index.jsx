@@ -6,11 +6,11 @@ import '../../api/firebase/firebaseConfig';
 import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth';
 
 import styles from '../../../styles/Login.module.css';
-import Description from '../../../components/description';
+// import Description from '../../../components/description';
 
-import { destroyCookie, setCookie } from 'nookies';
-import { parseCookies } from 'nookies';
-import { auth } from '../../api/firebase/firebaseAdmin';
+// import { destroyCookie, setCookie } from 'nookies';
+// import { parseCookies } from 'nookies';
+// import { auth } from '../../api/firebase/firebaseAdmin';
 
 // export async function getServerSideProps(context) {
 //     const cookies = parseCookies(context);
@@ -89,48 +89,54 @@ const Home = () => {
             onClick={handleLogout}
             className={styles.button_LogOut}>ログアウト
             </button>
-            <div style={{ position: 'absolute', bottom: '200px', width: '100%', textAlign: 'center', backgroundColor: '#f3960b'}}>
+            <div style={{ position: 'absolute', bottom: '100px', width: '100%', textAlign: 'center', backgroundColor: '#f3960b'}}>
             <p style ={{ fontSize: '30px', color: 'black'}}>
                 いくつかの質問に答えてね！
             </p>
             </div>
+
+            <div style ={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', fontSize: '25px'}}>
             <label>
-                学校で好きな科目は？:
-                <input
+                学校で好きな科目は？
+            </label>
+            <input
                 type="text"
                 value={interests}
                 onChange={(e) => setInterests(e.target.value)}
-                // className={styles.question_input}
+                placeholder="例: 理科、数学、国語"
+                className={styles.question_input1}
                 />
-            </label>
-            <label style={{ fontSize: '20px'}}>
+            <label style={{ fontSize: '25px'}}>
                 理科の授業で面白かった実験は？
                 <input
                 type="text"
                 value={interests}
                 onChange={(e) => setInterests(e.target.value)}
                 placeholder="例: 水の性質、燃焼、光の反射と屈折、バネと力、昆虫の観察、天気の観察"
-                className={styles.question_input}
+                className={styles.question_input2}
                 />
             </label>
-            <label>
-                どのくらいの期間で終わらせたい？:
+            <label style ={{ fontSize: '25px'}}>
+                どのくらいの期間で終わらせたい？
                 <input
                 type="text"
                 value={interests}
                 onChange={(e) => setInterests(e.target.value)}
-                placeholder="例: 科学, 歴史, 自然, アート"
+                placeholder="例: 科学、歴史、自然、アート"
+                className={styles.question_input3}
                 />
             </label>
-            <label>
-                家にあるもので何か使ってみたいものはある？:
+            <label style ={{ fontSize: '25px'}}>
+                家にあるもので何か使ってみたいものはある？
                 <input
                 type="text"
                 value={interests}
                 onChange={(e) => setInterests(e.target.value)}
-                placeholder="例: 科学, 歴史, 自然, アート"
+                placeholder="例: 水、酢、砂糖、電池、ペットボトル、磁石、アルミホイル、空き瓶"
+                className={styles.question_input4}
                 />
             </label>
+            </div>
         </div>
     )
 };
