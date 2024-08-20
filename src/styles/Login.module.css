@@ -86,7 +86,7 @@
 }
 
 .button_LogOut:active {
-    background-color: #d2385c;
+    background-color: #d84c00;
 }
 
 
@@ -107,42 +107,82 @@
 
 
 .question_input1 {
-    width: 270px;
+    width: 220px;
     padding: 9px;
     margin-top: 5px;
     margin-bottom: 80px;
-    font-Size: 25px;
+    font-Size: 20px;
     border-top: 2px solid #f56f27;
     border-bottom: 2px solid #f56f27;
     outline: none;
+}
+.question_input1::placeholder {
+    opacity: 0.6;
 }
 
 .question_input2 {
-    width: 870px;
+    width: 710px;
     padding: 9px;
     margin-top: 5px;
     margin-bottom: 80px;
+    font-Size: 20px;
     border-top: 2px solid #f56f27;
     border-bottom: 2px solid #f56f27;
     outline: none;
+}
+.question_input2::placeholder {
+    opacity: 0.6;
 }
 
 .question_input3 {
-    width: 360px;
+    width: 300px;
     padding: 9px;
     margin-top: 5px;
     margin-bottom: 80px;
+    font-Size: 20px;
     border-top: 2px solid #f56f27;
     border-bottom: 2px solid #f56f27;
     outline: none;
 }
 
+.question_input3::placeholder {
+    opacity: 0.6;
+}
+
 .question_input4 {
-    width: 810px;
+    width: 660px;
     padding: 9px;
     margin-top: 5px;
     margin-bottom: 80px;
+    font-Size: 20px;
     border-top: 2px solid #f56f27;
     border-bottom: 2px solid #f56f27;
     outline: none;
+}
+
+.question_input4::placeholder {
+    opacity: 0.6;
+}
+
+
+
+
+.button_Create {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: #f3960b;
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    border: none;
+    border: 5px;
+    cursor: pointer;
+}
+
+.button_Create:hover {
+    background-color: #ff9900;
+}
+
+.button_Create:active {
+    background-color: #ff5e00;
 }

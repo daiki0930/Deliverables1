@@ -6,6 +6,7 @@ import '../../api/firebase/firebaseConfig';
 import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth';
 
 import styles from '../../../styles/Login.module.css';
+import React from 'react';
 // import Description from '../../../components/description';
 
 // import { destroyCookie, setCookie } from 'nookies';
@@ -45,6 +46,10 @@ const Home = () => {
     const router = useRouter();
     const auth = getAuth()
     const [interests, setInterests] = useState();
+    const [interests1, setInterests1] = useState();
+    const [interests2, setInterests2] = useState();
+    const [interests3, setInterests3] = useState();
+
 
     useEffect(() => {
         const Logout = onAuthStateChanged(auth, (currentUser) => {
@@ -79,7 +84,7 @@ const Home = () => {
     }
     return (
         <div className={ styles.background_home }>
-            <div style ={{ position: 'absolute', top: 20, width: '75%', textAlign: 'center', backgroundColor: '#ffffff'}}>
+            <div style ={{ position: 'absolute', top: 20, width: '75%', textAlign: 'center', backgroundColor: '#ffffff', borderRadius: '10px'}}>
                 <p style={{ fontSize: '60px', fontWeight: 'bold', color: '#ea9917' }}>
                     AIと一緒に自由研究テーマを決めよう!
                 </p>
@@ -90,53 +95,64 @@ const Home = () => {
             className={styles.button_LogOut}>ログアウト
             </button>
             <div style={{ position: 'absolute', bottom: '100px', width: '100%', textAlign: 'center', backgroundColor: '#f3960b'}}>
-            <p style ={{ fontSize: '30px', color: 'black'}}>
-                いくつかの質問に答えてね！
-            </p>
+                <p style ={{ fontSize: '30px', color: 'black'}}>
+                    いくつかの質問に答えてね！
+                </p>
             </div>
 
-            <div style ={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', fontSize: '25px'}}>
-            <label>
-                学校で好きな科目は？
-            </label>
-            <input
+            <div style ={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', fontSize: '25px', height: '100vh'}}>
+                <label style ={{ marginTop: '150px'}}>
+                    学校で好きな科目は？
+                </label>
+                <input
                 type="text"
                 value={interests}
                 onChange={(e) => setInterests(e.target.value)}
                 placeholder="例: 理科、数学、国語"
                 className={styles.question_input1}
                 />
-            <label style={{ fontSize: '25px'}}>
-                理科の授業で面白かった実験は？
+                <label>
+                    理科の授業で面白かった実験は？
+                </label>
                 <input
                 type="text"
-                value={interests}
-                onChange={(e) => setInterests(e.target.value)}
+                value={interests1}
+                onChange={(e) => setInterests1(e.target.value)}
                 placeholder="例: 水の性質、燃焼、光の反射と屈折、バネと力、昆虫の観察、天気の観察"
                 className={styles.question_input2}
                 />
-            </label>
-            <label style ={{ fontSize: '25px'}}>
-                どのくらいの期間で終わらせたい？
+                <label>
+                    どのくらいの期間で終わらせたい？
+                </label>
                 <input
                 type="text"
-                value={interests}
-                onChange={(e) => setInterests(e.target.value)}
+                value={interests2}
+                onChange={(e) => setInterests2(e.target.value)}
                 placeholder="例: 科学、歴史、自然、アート"
                 className={styles.question_input3}
                 />
-            </label>
-            <label style ={{ fontSize: '25px'}}>
-                家にあるもので何か使ってみたいものはある？
+                <label>
+                    家にあるもので何か使ってみたいものはある？
+                </label>
                 <input
                 type="text"
-                value={interests}
-                onChange={(e) => setInterests(e.target.value)}
+                value={interests3}
+                onChange={(e) => setInterests3(e.target.value)}
                 placeholder="例: 水、酢、砂糖、電池、ペットボトル、磁石、アルミホイル、空き瓶"
                 className={styles.question_input4}
                 />
-            </label>
+
+                <button
+                // onClick={}
+                className={styles.button_Create}>
+                    この条件で案を作成してもらう
+                </button>
+
+                <label>
+                提案テーマ
+                </label>
             </div>
+
         </div>
     )
 };
