@@ -101,7 +101,7 @@ const Home = () => {
             </div>
 
             <div style ={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', fontSize: '25px', height: '100vh'}}>
-                <label style ={{ marginTop: '150px'}}>
+                <label style ={{ marginTop: '500px'}}>
                     学校で好きな科目は？
                 </label>
                 <input
@@ -128,7 +128,7 @@ const Home = () => {
                 type="text"
                 value={interests2}
                 onChange={(e) => setInterests2(e.target.value)}
-                placeholder="例: 科学、歴史、自然、アート"
+                placeholder="例: 一週間、一ヶ月"
                 className={styles.question_input3}
                 />
                 <label>
@@ -148,9 +148,11 @@ const Home = () => {
                     この条件で案を作成してもらう
                 </button>
 
-                <label>
+                <label style ={{ marginTop: '60px'}}>
                 提案テーマ
                 </label>
+
+
             </div>
 
         </div>

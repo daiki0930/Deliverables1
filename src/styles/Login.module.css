@@ -135,7 +135,7 @@
 }
 
 .question_input3 {
-    width: 300px;
+    width: 200px;
     padding: 9px;
     margin-top: 5px;
     margin-bottom: 80px;
@@ -168,10 +168,10 @@
 
 
 .button_Create {
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 10px 20px;
     font-size: 20px;
-    background-color: #f3960b;
+    background-color: #e8900c;
     color: rgb(0, 0, 0);
     border-radius: 5px;
     border: none;
