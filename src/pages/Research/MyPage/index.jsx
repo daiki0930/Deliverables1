@@ -49,6 +49,19 @@ const Home = () => {
     const [interests1, setInterests1] = useState();
     const [interests2, setInterests2] = useState();
     const [interests3, setInterests3] = useState();
+    const [theme, setTheme] = useState();
+
+    const fetchTheme = async () => {
+        const response = await fetch('../../api/generate-theme', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ interests, interests1, interests2, interests3 }),
+        });
+        const data = await response.json();
+        setTheme(data.theme);
+    };
 
 
     useEffect(() => {
@@ -61,6 +74,8 @@ const Home = () => {
         });
         return () => Logout();
     }, [auth]);
+
+
 
     const handleLogout = async() => {
         try {
@@ -143,7 +158,7 @@ const Home = () => {
                 />
 
                 <button
-                // onClick={}
+                onClick={fetchTheme}
                 className={styles.button_Create}>
                     この条件で案を作成してもらう
                 </button>
@@ -151,8 +166,7 @@ const Home = () => {
                 <label style ={{ marginTop: '60px'}}>
                 提案テーマ
                 </label>
-
-
+                {theme && <p>{theme}</p>}
             </div>
 
         </div>
