@@ -12,22 +12,27 @@ export default async function handler(req, res) {
         const { interests, interests1, interests2, interests3 } = req.body;
 
         try {
-            console.log('------届いているか1--------');
             const completion = await openai.chat.completions.create({
                 model: 'gpt-3.5-turbo',
                 messages: [
-                    { role: "system", content: "You are an assistant who helps elementary school students create independent research themes."},
-                    { role: 'user', content: `Suggest a research theme for an elementary school student. Subjects: ${interests}. An interesting experiment: ${interests1}. Duration: ${interests2}. Available materials: ${interests3}`}
+                    { role: "system", content: "You are an assistant who helps elementary school students create independent research themes. Please respond in Japanese."},
+                    { role: 'user', content: `小学生向けの研究テーマを提案してください。テーマだけを教えてください。科目: ${interests}。 面白い実験: ${interests1}。 期間: ${interests2}。使用可能な材料: ${interests3}。`}
+                    // { role: 'user', content: `Suggest a research theme for an elementary school student. Subjects: ${interests}. An interesting experiment: ${interests1}. Duration: ${interests2}. Available materials: ${interests3}`}
                 ]
             });
-            console.log('------届いているか2--------', completion)
+            console.log('------届いているか1--------', completion)
 
             if ( completion && completion.choices && Array.isArray(completion.choices) && completion.choices.length > 0) {
+
                 const responseText = completion.choices[0].message.content.trim();
-                console.log('------届いているか3-------', responseText)
+                console.log('------届いているか2-------', responseText)
+
+                // const themeMatch = responseText.match(/「(.+?)」/);
+                // const themeTitle1 = themeMatch ? themeMatch[1] : "テーマが見つかりませんでした。";
+                // console.log('------届いているか2.1-------', themeTitle1)
 
                 const themeTitle = responseText.split('\n')[0];
-                console.log('------届いているか4-------', themeTitle)
+                console.log('------届いているか3-------', themeTitle)
 
                 res.status(200).json({ theme: themeTitle });
             } else {

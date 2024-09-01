@@ -96,7 +96,7 @@
     justify-content: center;
     align-items: center;
     height: 2000px;
-    flex-Direction: 'column'; 
+    flex-Direction: 'column';
     background: linear-gradient(to bottom,  #f5ba61, #eecfb6)
     /* background: linear-gradient(to bottom,  #f3960b, #ffffff) */
 }
@@ -107,7 +107,7 @@
 
 
 .question_input1 {
-    width: 220px;
+    width: 300px;
     padding: 9px;
     margin-top: 5px;
     margin-bottom: 80px;
@@ -185,4 +185,14 @@
 
 .button_Create:active {
     background-color: #ff5e00;
+}
+
+
+.responseText {
+    max-width: 70%;
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 25px;
+    font-size: 25px;
+    background-color: #f09050;
 }

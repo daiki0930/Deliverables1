@@ -117,13 +117,13 @@ const Home = () => {
 
             <div style ={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', fontSize: '25px', height: '100vh'}}>
                 <label style ={{ marginTop: '500px'}}>
-                    学校で好きな科目は？
+                    小学校の授業で好きな科目は？(１科目だけ教えてね)
                 </label>
                 <input
                 type="text"
                 value={interests}
                 onChange={(e) => setInterests(e.target.value)}
-                placeholder="例: 理科、数学、国語"
+                placeholder="例: 理科、数学、情報、英語"
                 className={styles.question_input1}
                 />
                 <label>
@@ -168,7 +168,7 @@ const Home = () => {
                 </label>
                 
                 {theme &&
-                <p style ={{ marginTop: '25px'}}>
+                <p className={styles.responseText}>
                     {theme}
                 </p>
                 }
