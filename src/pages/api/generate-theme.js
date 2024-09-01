@@ -22,16 +22,16 @@ export default async function handler(req, res) {
             });
             console.log('------届いているか2--------', completion)
 
-            try {
-            const responseText = completion.data.choices[0].message.content.trim();
-            console.log('------届いているか3-------', responseText)
+            if ( completion && completion.choices && Array.isArray(completion.choices) && completion.choices.length > 0) {
+                const responseText = completion.choices[0].message.content.trim();
+                console.log('------届いているか3-------', responseText)
 
-            const themeTitle = responseText.split('\n')[0];
-            console.log('------届いているか4-------', themeTitle)
+                const themeTitle = responseText.split('\n')[0];
+                console.log('------届いているか4-------', themeTitle)
 
-            res.status(200).json({ theme: themeTitle });
-            } catch (ResponseError) {
-                console.error('応答処理のエラーです。', ResponseError)
+                res.status(200).json({ theme: themeTitle });
+            } else {
+                console.error('応答処理のエラーです。', completion)
                 res.status(500).json({ error: 'response error.'});
             }
         } catch (error) {

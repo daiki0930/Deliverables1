@@ -166,7 +166,12 @@ const Home = () => {
                 <label style ={{ marginTop: '60px'}}>
                 提案テーマ
                 </label>
-                {theme && <p>{theme}</p>}
+                
+                {theme &&
+                <p style ={{ marginTop: '25px'}}>
+                    {theme}
+                </p>
+                }
             </div>
 
         </div>
