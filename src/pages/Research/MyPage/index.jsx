@@ -50,6 +50,7 @@ const Home = () => {
     const [interests2, setInterests2] = useState();
     const [interests3, setInterests3] = useState();
     const [theme, setTheme] = useState();
+    const [content, setContent] = useState();
 
     const fetchTheme = async () => {
         const response = await fetch('../../api/generate-theme', {
@@ -61,6 +62,7 @@ const Home = () => {
         });
         const data = await response.json();
         setTheme(data.theme);
+        setContent(data.content);
     };
 
 
@@ -123,11 +125,11 @@ const Home = () => {
                 type="text"
                 value={interests}
                 onChange={(e) => setInterests(e.target.value)}
-                placeholder="例: 理科、数学、情報、英語"
+                placeholder="例: 理科、社会"
                 className={styles.question_input1}
                 />
                 <label>
-                    理科の授業で面白かった実験は？
+                    理科の授業で面白かった実験は？(理科と答えた場合のみ)
                 </label>
                 <input
                 type="text"
@@ -137,6 +139,16 @@ const Home = () => {
                 className={styles.question_input2}
                 />
                 <label>
+                    好きな科目のことで、どんなことが気になる？(理科以外で答えた場合のみ)
+                </label>
+                <input
+                type="text"
+                value={interests1}
+                onChange={(e) => setInterests1(e.target.value)}
+                placeholder="例: 漢字や詩に関すること(国語)、図形やデータのこと(算数)、地理や歴史のこと(社会)"
+                className={styles.question_input3}
+                />
+                <label>
                     どのくらいの期間で終わらせたい？
                 </label>
                 <input
@@ -144,7 +156,7 @@ const Home = () => {
                 value={interests2}
                 onChange={(e) => setInterests2(e.target.value)}
                 placeholder="例: 一週間、一ヶ月"
-                className={styles.question_input3}
+                className={styles.question_input4}
                 />
                 <label>
                     家にあるもので何か使ってみたいものはある？
@@ -154,7 +166,7 @@ const Home = () => {
                 value={interests3}
                 onChange={(e) => setInterests3(e.target.value)}
                 placeholder="例: 水、酢、砂糖、電池、ペットボトル、磁石、アルミホイル、空き瓶"
-                className={styles.question_input4}
+                className={styles.question_input5}
                 />
 
                 <button
@@ -167,11 +179,10 @@ const Home = () => {
                 提案テーマ
                 </label>
                 
-                {theme &&
-                <p className={styles.responseText}>
-                    {theme}
-                </p>
-                }
+                { theme && <p className={styles.responseText}> {theme} </p> }
+                
+                { content && <p className={styles.responseText}> {content} </p> }
+                
             </div>
 
         </div>
