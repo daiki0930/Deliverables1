@@ -118,6 +118,7 @@
 }
 .question_input1::placeholder {
     opacity: 0.6;
+    text-align: center;
 }
 
 .question_input2 {
@@ -132,6 +133,7 @@
 }
 .question_input2::placeholder {
     opacity: 0.6;
+    text-align: center;
 }
 
 .question_input3 {
@@ -146,6 +148,7 @@
 }
 .question_input3::placeholder {
     opacity: 0.6;
+    text-align: center;
 }
 
 .question_input4 {
@@ -161,6 +164,7 @@
 
 .question_input4::placeholder {
     opacity: 0.6;
+    text-align: center;
 }
 
 .question_input5 {
@@ -176,6 +180,7 @@
 
 .question_input5::placeholder {
     opacity: 0.6;
+    text-align: center;
 }
 
 
@@ -209,4 +214,16 @@
     margin-top: 25px;
     font-size: 25px;
     background-color: #f09050;
+}
+
+.ResetButton {
+    margin-top: 90px;
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: #e8900c;
+    border-radius: 10px;
+}
+
+.ResetButton:hover {
+    background-color: #ff9900;
 }

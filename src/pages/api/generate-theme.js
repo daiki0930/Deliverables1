@@ -9,7 +9,7 @@ const openai = new OpenAI({
 export default async function handler(req, res) {
     if (req.method === 'POST') {
         console.log('------届いているか--------', req.body)
-        const { interests, interests1, interests2, interests3 } = req.body;
+        const { interests, interests1, interests2, interests3, interests4 } = req.body;
 
         try {
             const completion = await openai.chat.completions.create({
@@ -18,7 +18,12 @@ export default async function handler(req, res) {
                 temperature: 0.5,
                 messages: [
                     { role: "system", content: "You are an assistant who helps elementary school students create independent research themes. Please respond in Japanese."},
-                    { role: 'user', content: `小学生向けの${ interests }の自由研究テーマを提案してください。回答は「テーマ」と「研究内容」を教えてください。「研究内容」はその実験の説明を簡単にしてください。次の三つをヒントに。面白かった実験: ${interests1}。 期間: ${interests2}。使用可能な材料: ${interests3}。`}
+                    {
+                        role: 'user',
+                        content: interests === '理科'
+                             ? `小学生向けの${ interests }の自由研究テーマを提案してください。回答は「テーマ」と「研究内容」を教えてください。「研究内容」はその実験の説明を簡単にしてください。次の三つをヒントに。面白かった実験: ${interests1}。使用可能な材料: ${interests2}。期間: ${interests4}。`
+                             : `小学生向けの${ interests }の自由研究テーマを提案してください。回答は「テーマ」と「研究内容」を教えてください。「研究内容」はその実験の説明を簡単にしてください。次の三つをヒントに。気になること: ${interests3}。 期間: ${interests4}。`
+                    }
                     // { role: 'user', content: `Suggest a research theme for an elementary school student. Subjects: ${interests}. An interesting experiment: ${interests1}. Duration: ${interests2}. Available materials: ${interests3}`}
                 ]
             });

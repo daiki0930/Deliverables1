@@ -49,16 +49,23 @@ const Home = () => {
     const [interests1, setInterests1] = useState();
     const [interests2, setInterests2] = useState();
     const [interests3, setInterests3] = useState();
+    const [interests4, setInterests4] = useState();
     const [theme, setTheme] = useState();
     const [content, setContent] = useState();
 
     const fetchTheme = async () => {
+        const requestBody = {
+            interests,
+            ...(interests === '理科' ? {interests1} : {interests3} ),
+            ...(interests === '理科' ? {interests2} : {}),
+            interests4,
+        };
         const response = await fetch('../../api/generate-theme', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ interests, interests1, interests2, interests3 }),
+            body: JSON.stringify(requestBody),
         });
         const data = await response.json();
         setTheme(data.theme);
@@ -99,6 +106,16 @@ const Home = () => {
             })
         }
     }
+
+    const handleReset = () => {
+        setInterests('');
+        setInterests1('');
+        setInterests2('');
+        setInterests3('');
+        setInterests4('');
+
+    }
+
     return (
         <div className={ styles.background_home }>
             <div style ={{ position: 'absolute', top: 20, width: '75%', textAlign: 'center', backgroundColor: '#ffffff', borderRadius: '10px'}}>
@@ -119,7 +136,7 @@ const Home = () => {
 
             <div style ={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', fontSize: '25px', height: '100vh'}}>
                 <label style ={{ marginTop: '500px'}}>
-                    小学校の授業で好きな科目は？(１科目だけ教えてね)
+                    小学校の授業で好きな科目は？(１科目のみ)
                 </label>
                 <input
                 type="text"
@@ -128,6 +145,7 @@ const Home = () => {
                 placeholder="例: 理科、社会"
                 className={styles.question_input1}
                 />
+
                 <label>
                     理科の授業で面白かった実験は？(理科と答えた場合のみ)
                 </label>
@@ -135,38 +153,44 @@ const Home = () => {
                 type="text"
                 value={interests1}
                 onChange={(e) => setInterests1(e.target.value)}
-                placeholder="例: 水の性質、燃焼、光の反射と屈折、バネと力、昆虫の観察、天気の観察"
+                disabled={['国語', '数学', '社会'].includes(interests)}
+                placeholder={ ['国語', '数学', '社会'].includes(interests) ? '※入力できません' : '例: 水の性質、燃焼、光の反射と屈折、バネと力、昆虫の観察、天気の観察' }
                 className={styles.question_input2}
                 />
+                
                 <label>
-                    好きな科目のことで、どんなことが気になる？(理科以外で答えた場合のみ)
-                </label>
-                <input
-                type="text"
-                value={interests1}
-                onChange={(e) => setInterests1(e.target.value)}
-                placeholder="例: 漢字や詩に関すること(国語)、図形やデータのこと(算数)、地理や歴史のこと(社会)"
-                className={styles.question_input3}
-                />
-                <label>
-                    どのくらいの期間で終わらせたい？
+                    家にあるもので何か使ってみたいものはある？(理科と答えた場合のみ)
                 </label>
                 <input
                 type="text"
                 value={interests2}
                 onChange={(e) => setInterests2(e.target.value)}
-                placeholder="例: 一週間、一ヶ月"
-                className={styles.question_input4}
+                disabled={['国語', '数学', '社会'].includes(interests)}
+                placeholder={ ['国語', '数学', '社会'].includes(interests) ? '※入力できません' : "例: 水、酢、砂糖、電池、ペットボトル、磁石、アルミホイル、空き瓶" }
+                className={styles.question_input5}
                 />
+
                 <label>
-                    家にあるもので何か使ってみたいものはある？
+                    好きな科目のことで、どんなことが気になる？(理科以外で答えた場合のみ)
                 </label>
                 <input
                 type="text"
                 value={interests3}
                 onChange={(e) => setInterests3(e.target.value)}
-                placeholder="例: 水、酢、砂糖、電池、ペットボトル、磁石、アルミホイル、空き瓶"
-                className={styles.question_input5}
+                disabled={interests === '理科'}
+                placeholder={ interests === '理科' ? '※入力できません' : "例: 漢字や詩に関すること(国語)、図形やデータのこと(算数)、地理や歴史のこと(社会)"}
+                className={styles.question_input3}
+                />
+
+                <label>
+                    どのくらいの期間で終わらせたい？
+                </label>
+                <input
+                type="text"
+                value={interests4}
+                onChange={(e) => setInterests4(e.target.value)}
+                placeholder="例: 一週間、一ヶ月"
+                className={styles.question_input4}
                 />
 
                 <button
@@ -182,6 +206,8 @@ const Home = () => {
                 { theme && <p className={styles.responseText}> {theme} </p> }
                 
                 { content && <p className={styles.responseText}> {content} </p> }
+
+                <button onClicK={handleReset} className={styles.ResetButton}> もう一度行う</button>
                 
             </div>
 
