@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { React, useState, useEffect } from 'react';
 import { useShowToast } from '../../../../hooks/useShowToast';
 import { useRouter } from 'next/router';
 
@@ -6,8 +6,7 @@ import '../../api/firebase/firebaseConfig';
 import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth';
 
 import styles from '../../../styles/Login.module.css';
-import React from 'react';
-// import Description from '../../../components/description';
+import Description from '../../../components/description';
 
 // import { destroyCookie, setCookie } from 'nookies';
 // import { parseCookies } from 'nookies';
@@ -108,12 +107,7 @@ const Home = () => {
     }
 
     const handleReset = () => {
-        setInterests('');
-        setInterests1('');
-        setInterests2('');
-        setInterests3('');
-        setInterests4('');
-
+        window.location.reload();
     }
 
     return (
@@ -123,11 +117,11 @@ const Home = () => {
                     AIと一緒に自由研究テーマを決めよう!
                 </p>
             </div>
+
             {/* <Description /> */}
-            <button
-            onClick={handleLogout}
-            className={styles.button_LogOut}>ログアウト
-            </button>
+
+            <button onClick={handleLogout} className={styles.button_LogOut}> ログアウト </button>
+
             <div style={{ position: 'absolute', bottom: '100px', width: '100%', textAlign: 'center', backgroundColor: '#f3960b'}}>
                 <p style ={{ fontSize: '30px', color: 'black'}}>
                     いくつかの質問に答えてね！
@@ -193,15 +187,9 @@ const Home = () => {
                 className={styles.question_input4}
                 />
 
-                <button
-                onClick={fetchTheme}
-                className={styles.button_Create}>
-                    この条件で案を作成してもらう
-                </button>
+                <button onClick={fetchTheme} className={styles.button_Create}> この条件で案を作成してもらう </button>
 
-                <label style ={{ marginTop: '60px'}}>
-                提案テーマ
-                </label>
+                <label style ={{ marginTop: '60px'}}> 提案テーマ </label>
                 
                 { theme && <p className={styles.responseText}> {theme} </p> }
                 

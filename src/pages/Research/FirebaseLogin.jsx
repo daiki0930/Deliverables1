@@ -19,18 +19,16 @@ const LoginForm = () => {
     const showToast = useShowToast()
     const oneHourInSeconds = 3600;
 
-    // console.log('----ログイン0------',document.cookie)
-
     const handleLogin = async (e) => {
-        console.log('----ログイン0------')
+        // console.log('----ログイン0------')
         e.preventDefault();
         try {
             const loginUser = await signInWithEmailAndPassword(auth, email, password);
-            console.log('----ログイン1-------', loginUser)
+            // console.log('----ログイン1-------', loginUser)
             setUser(loginUser.user);
-            console.log('----ログイン1-------', loginUser.user)
+            // console.log('----ログイン1-------', loginUser.user)
             const token = await loginUser.user.getIdToken();
-            console.log('----ログイン2-------', token)
+            // console.log('----ログイン2-------', token)
             // IDトークンはゲットできてる
 
 

@@ -95,7 +95,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 2300px;
+    height: 2500px;
     flex-Direction: 'column';
     background: linear-gradient(to bottom,  #f5ba61, #eecfb6)
     /* background: linear-gradient(to bottom,  #f3960b, #ffffff) */
