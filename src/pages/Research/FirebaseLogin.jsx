@@ -1,3 +1,5 @@
+import { Box, Text, Button, Heading, Spacer, InputGroup, InputLeftElement, Icon, Input } from '@chakra-ui/react';
+import { EmailIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -17,21 +19,14 @@ const LoginForm = () => {
     const router = useRouter();
     const auth = getAuth();
     const showToast = useShowToast()
-    const oneHourInSeconds = 3600;
+    // const oneHourInSeconds = 3600;
 
     const handleLogin = async (e) => {
-        // console.log('----ログイン0------')
         e.preventDefault();
         try {
             const loginUser = await signInWithEmailAndPassword(auth, email, password);
-            // console.log('----ログイン1-------', loginUser)
             setUser(loginUser.user);
-            // console.log('----ログイン1-------', loginUser.user)
             const token = await loginUser.user.getIdToken();
-            // console.log('----ログイン2-------', token)
-            // IDトークンはゲットできてる
-
-
             // await fetch('api/auth/sessionLogin', {
             //     method: 'POST',
             //     headers: {
@@ -48,6 +43,7 @@ const LoginForm = () => {
             })
             router.push('/Research/MyPage/');
         } catch (error) {
+            if (!email || password) throw new Error('認証情報を入力してください。');
             setError(error);
             setUser(null);
             showToast({
@@ -59,37 +55,30 @@ const LoginForm = () => {
     };
 
     return (
-        <div className={styles.container}>
-            <div className={styles.card}>
-            <h2>ログイン</h2>
-                <div>
-                    <form onSubmit={handleLogin}>
-                        <input
+        <Box className={styles.container}>
+            <Box className={styles.card}>
+                <Heading>ログイン</Heading>
+                    <Input
                         type="email"
                         placeholder="メールアドレス"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
                         className={styles.input}
-                        />
-                        <input
+                    />
+                    <Input
                         type="password"
                         placeholder="パスワード"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                         className={styles.input}
-                        />
-                        <button
-                        type="submit"
-                        className={styles.button_LogSign}
-                        >
-                            ログイン
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
+                    />
+                    <Button onClick={handleLogin} type="submit" className={styles.button_LogSign}>
+                        ログイン
+                    </Button>
+            </Box>
+        </Box>
     );
 };
 

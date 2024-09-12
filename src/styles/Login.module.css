@@ -3,7 +3,8 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(to bottom,  #47d5e2, #c1f8ea)
+    background: linear-gradient(to bottom,  #47d5e2, #c1f8ea);
+    position: relative
 }
 
 .button1 {
@@ -15,6 +16,10 @@
     border-radius: 100px;
     border: none;
     cursor: pointer;
+}
+
+.button1:hover {
+    background: #17766b;
 }
 
 
