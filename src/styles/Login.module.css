@@ -56,6 +56,9 @@
     border-bottom: 2px solid teal;
 }
 
+
+
+
 .button_LogSign {
     background-color: teal;
     color: white;
@@ -78,9 +81,6 @@
 
 .button_LogOut {
     background-color: #f4f0b4;
-    position: absolute;
-    top: 25px;
-    right: 25px;
     padding: 10px 20px;
     border: none;
     border-radius: 7px;
@@ -112,7 +112,7 @@
 
 
 .question_input1 {
-    width: 300px;
+    /* width: 300px; */
     padding: 9px;
     margin-top: 5px;
     margin-bottom: 80px;
@@ -122,68 +122,6 @@
     outline: none;
 }
 .question_input1::placeholder {
-    opacity: 0.6;
-    text-align: center;
-}
-
-.question_input2 {
-    width: 710px;
-    padding: 9px;
-    margin-top: 5px;
-    margin-bottom: 80px;
-    font-Size: 20px;
-    border-top: 2px solid #f56f27;
-    border-bottom: 2px solid #f56f27;
-    outline: none;
-}
-.question_input2::placeholder {
-    opacity: 0.6;
-    text-align: center;
-}
-
-.question_input3 {
-    width: 870px;
-    padding: 9px;
-    margin-top: 5px;
-    margin-bottom: 80px;
-    font-Size: 20px;
-    border-top: 2px solid #f56f27;
-    border-bottom: 2px solid #f56f27;
-    outline: none;
-}
-.question_input3::placeholder {
-    opacity: 0.6;
-    text-align: center;
-}
-
-.question_input4 {
-    width: 200px;
-    padding: 9px;
-    margin-top: 5px;
-    margin-bottom: 80px;
-    font-Size: 20px;
-    border-top: 2px solid #f56f27;
-    border-bottom: 2px solid #f56f27;
-    outline: none;
-}
-
-.question_input4::placeholder {
-    opacity: 0.6;
-    text-align: center;
-}
-
-.question_input5 {
-    width: 660px;
-    padding: 9px;
-    margin-top: 5px;
-    margin-bottom: 80px;
-    font-Size: 20px;
-    border-top: 2px solid #f56f27;
-    border-bottom: 2px solid #f56f27;
-    outline: none;
-}
-
-.question_input5::placeholder {
     opacity: 0.6;
     text-align: center;
 }

@@ -1,3 +1,4 @@
+import { Box, Container, Text, Button, Input } from '@chakra-ui/react';
 import { React, useState, useEffect } from 'react';
 import { useShowToast } from '../../../../hooks/useShowToast';
 import { useRouter } from 'next/router';
@@ -111,96 +112,101 @@ const Home = () => {
     }
 
     return (
-        <div className={ styles.background_home }>
-            <div style ={{ position: 'absolute', top: 20, width: '75%', textAlign: 'center', backgroundColor: '#ffffff', borderRadius: '10px'}}>
-                <p style={{ fontSize: '60px', fontWeight: 'bold', color: '#ea9917' }}>
+        <Container className={ styles.background_home }>
+            <Box position="absolute" top="20px" width="75%" textAlign="center" backgroundColor="#ffffff" borderRadius="10px">
+                <Text fontSize="60px" fontWeight="bold" color="#ea9917" >
                     AIと一緒に自由研究テーマを決めよう!
-                </p>
-            </div>
+                </Text>
+            </Box>
 
             {/* <Description /> */}
 
-            <button onClick={handleLogout} className={styles.button_LogOut}> ログアウト </button>
+            <Box position="absolute" top="20px" right="30px">
+            <Button onClick={handleLogout} className={styles.button_LogOut}> ログアウト </Button>
+            </Box>
 
-            <div style={{ position: 'absolute', bottom: '100px', width: '100%', textAlign: 'center', backgroundColor: '#f3960b'}}>
-                <p style ={{ fontSize: '30px', color: 'black'}}>
+            <Box position="absolute" bottom="100px" width="100%" textAlign="center" backgroundColor="#f3960b">
+                <Text fontSize="30px" color="black">
                     いくつかの質問に答えてね！
-                </p>
-            </div>
+                </Text>
+            </Box>
 
-            <div style ={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', fontSize: '25px', height: '100vh'}}>
-                <label style ={{ marginTop: '500px'}}>
+            <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" fontSize="25px" height="100vh">
+                <Text marginTop="500px">
                     小学校の授業で好きな科目は？(１科目のみ)
-                </label>
-                <input
-                type="text"
-                value={interests}
-                onChange={(e) => setInterests(e.target.value)}
-                placeholder="例: 理科、社会"
-                className={styles.question_input1}
+                </Text>
+                <Input
+                    width="300px"
+                    type="text"
+                    value={interests}
+                    onChange={(e) => setInterests(e.target.value)}
+                    placeholder="例: 理科、社会"
+                    className={styles.question_input1}
                 />
 
-                <label>
+                <Text>
                     理科の授業で面白かった実験は？(理科と答えた場合のみ)
-                </label>
-                <input
-                type="text"
-                value={interests1}
-                onChange={(e) => setInterests1(e.target.value)}
-                disabled={['国語', '数学', '社会'].includes(interests)}
-                placeholder={ ['国語', '数学', '社会'].includes(interests) ? '※入力できません' : '例: 水の性質、燃焼、光の反射と屈折、バネと力、昆虫の観察、天気の観察' }
-                className={styles.question_input2}
+                </Text>
+                <Input
+                    width="710px"
+                    type="text"
+                    value={interests1}
+                    onChange={(e) => setInterests1(e.target.value)}
+                    disabled={['国語', '数学', '社会'].includes(interests)}
+                    placeholder={ ['国語', '数学', '社会'].includes(interests) ? '※入力できません' : '例: 水の性質、燃焼、光の反射と屈折、バネと力、昆虫の観察、天気の観察' }
+                    className={styles.question_input1}
                 />
                 
-                <label>
+                <Text>
                     家にあるもので何か使ってみたいものはある？(理科と答えた場合のみ)
-                </label>
-                <input
-                type="text"
-                value={interests2}
-                onChange={(e) => setInterests2(e.target.value)}
-                disabled={['国語', '数学', '社会'].includes(interests)}
-                placeholder={ ['国語', '数学', '社会'].includes(interests) ? '※入力できません' : "例: 水、酢、砂糖、電池、ペットボトル、磁石、アルミホイル、空き瓶" }
-                className={styles.question_input5}
+                </Text>
+                <Input
+                    width="660px"
+                    type="text"
+                    value={interests2}
+                    onChange={(e) => setInterests2(e.target.value)}
+                    disabled={['国語', '数学', '社会'].includes(interests)}
+                    placeholder={ ['国語', '数学', '社会'].includes(interests) ? '※入力できません' : "例: 水、酢、砂糖、電池、ペットボトル、磁石、アルミホイル、空き瓶" }
+                    className={styles.question_input1}
                 />
 
-                <label>
+                <Text>
                     好きな科目のことで、どんなことが気になる？(理科以外で答えた場合のみ)
-                </label>
-                <input
-                type="text"
-                value={interests3}
-                onChange={(e) => setInterests3(e.target.value)}
-                disabled={interests === '理科'}
-                placeholder={ interests === '理科' ? '※入力できません' : "例: 漢字や詩に関すること(国語)、図形やデータのこと(算数)、地理や歴史のこと(社会)"}
-                className={styles.question_input3}
+                </Text>
+                <Input
+                    width="870px"
+                    type="text"
+                    value={interests3}
+                    onChange={(e) => setInterests3(e.target.value)}
+                    disabled={interests === '理科'}
+                    placeholder={ interests === '理科' ? '※入力できません' : "例: 漢字や詩に関すること(国語)、図形やデータのこと(算数)、地理や歴史のこと(社会)"}
+                    className={styles.question_input1}
                 />
 
-                <label>
+                <Text>
                     どのくらいの期間で終わらせたい？
-                </label>
-                <input
-                type="text"
-                value={interests4}
-                onChange={(e) => setInterests4(e.target.value)}
-                placeholder="例: 一週間、一ヶ月"
-                className={styles.question_input4}
+                </Text>
+                <Input
+                    width="200px"
+                    type="text"
+                    value={interests4}
+                    onChange={(e) => setInterests4(e.target.value)}
+                    placeholder="例: 一週間、一ヶ月"
+                    className={styles.question_input1}
                 />
 
-                <button onClick={fetchTheme} className={styles.button_Create}> この条件で案を作成してもらう </button>
+                <Button onClick={fetchTheme} className={styles.button_Create}> この条件で案を作成してもらう </Button>
 
-                <label style ={{ marginTop: '60px'}}> 提案テーマ </label>
+                <Text marginTop="60px"> 提案テーマ </Text>
                 
-                { theme && <p className={styles.responseText}> {theme} </p> }
+                { theme && <Text className={styles.responseText}> {theme} </Text> }
                 
-                { content && <p className={styles.responseText}> {content} </p> }
+                { content && <Text className={styles.responseText}> {content} </Text> }
 
-                <button onClicK={handleReset} className={styles.ResetButton}> もう一度行う</button>
-                
-            </div>
-
-        </div>
-    )
+                <Button onClicK={handleReset} className={styles.ResetButton}> もう一度行う</Button>
+            </Box>
+        </Container>
+    );
 };
 
 export default Home;

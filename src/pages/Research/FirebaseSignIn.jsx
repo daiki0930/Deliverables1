@@ -1,3 +1,4 @@
+import { Box, Button, Container, Heading, Input } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import '../api/firebase/firebaseConfig';
@@ -14,8 +15,6 @@ const SignInForm = () => {
     const auth = getAuth();
     const showToast = useShowToast();
 
-    
-    // authはfirebaseAuthenticationサービスのインスタンス
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
@@ -36,35 +35,28 @@ const SignInForm = () => {
     };
 
     return (
-        <div className={styles.container}>
-            <div className={styles.card}>
-            <h2>新規登録</h2>
-                <div>
-                    <form onSubmit={handleRegister}>
-                    <input
+        <Container className={styles.container}>
+            <Box className={styles.card}>
+                <Heading>新規登録</Heading>
+                <Input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="メールアドレス"
                     className={styles.input}
-                    />
-                    <input
+                />
+                <Input
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="パスワード"
                     className={styles.input}
-                    />
-                    <button 
-                    type="submit" 
-                    className={styles.button_LogSign}
-                    >
-                        新規登録
-                    </button>
-                    </form>
-                </div>
-            </div>
-        </div>
+                />
+                <Button onClick={handleRegister} type="submit" className={styles.button_LogSign}>
+                    新規登録
+                </Button>
+            </Box>
+        </Container>
     );
 };
 
