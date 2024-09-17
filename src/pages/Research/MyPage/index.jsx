@@ -7,7 +7,7 @@ import '../../api/firebase/firebaseConfig';
 import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth';
 
 import styles from '../../../styles/Login.module.css';
-import Description from '../../../components/description';
+// import Description from '../../../components/description';
 
 // import { destroyCookie, setCookie } from 'nookies';
 // import { parseCookies } from 'nookies';
@@ -88,11 +88,11 @@ const Home = () => {
 
     const handleLogout = async() => {
         try {
-            console.log('----どこでトークン削除が行われるか----',document.cookie)
+            // console.log('----どこでトークン削除が行われるか----',document.cookie)
             await signOut(auth);
-            console.log('----ログアウト0----',auth)
+            // console.log('----ログアウト0----',auth)
             // destroyCookie(null, 'token', { path: '/Research/MyPage'});
-            console.log('----トークン削除されてるはず----',document.cookie)
+            // console.log('----トークン削除されてるはず----',document.cookie)
             setUser(null);
             showToast({
                 status: 'success',
