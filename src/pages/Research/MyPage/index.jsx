@@ -107,9 +107,15 @@ const Home = () => {
         }
     }
 
-    const handleReset = () => {
-        window.location.reload();
-    }
+    // const handleReset = () => {
+    //     setInterests('');
+    //     setInterests1('');
+    //     setInterests2('');
+    //     setInterests3('');
+    //     setInterests4('');
+    //     setTheme('');
+    //     setContent('');
+    // };
 
     return (
         <Container className={ styles.background_home }>
@@ -203,7 +209,7 @@ const Home = () => {
                 
                 { content && <Text className={styles.responseText}> {content} </Text> }
 
-                <Button onClicK={handleReset} className={styles.ResetButton}> もう一度行う</Button>
+                {/* <Button onClicK={handleReset} className={styles.ResetButton}> もう一度行う</Button> */}
             </Box>
         </Container>
     );
